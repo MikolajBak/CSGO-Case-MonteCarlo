@@ -202,6 +202,7 @@ res.Results.mean()
 ```
 
 ![Progress bar](https://user-images.githubusercontent.com/7750820/201226681-2ba257c3-da82-4159-9a8c-6d075da63657.png)
+
 At this point I have run the simulation for 200 runs (in multiple batches) and the average profit is -$751.68. Another interesting way of looking at this data is to plot it on a histogram. This gives us the frequency density of different levels of profit. 
 
 ```python
@@ -211,4 +212,5 @@ plt.gca().set(title='Profit Histogram', ylabel='Frequency')
 
 
 ![Histogram](https://user-images.githubusercontent.com/7750820/201226692-a2c52a5e-dc5f-430e-a094-0d04c96f39f7.png)
+
 As seen here, there are some instances where getting two sets of gloves is profitable, however the vast majority of simulations resulted in a net loss, with the biggest loss totalling -$4875.88.
