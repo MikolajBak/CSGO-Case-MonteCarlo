@@ -1,6 +1,18 @@
 
 The idea for this project stems from a 3kliksphilip YouTube video series Unboxing Millionaire, where in the [latest instalment](https://www.youtube.com/watch?v=bWweCxxl8hs) he set a challenge of guessing the profit/loss of opening CS:GO Recoil cases until 2 gloves are opened. I will attempt to find an approximate solution to this problem by performing Monte Carlo simulations.
 
+# Contents
+- [Introduction](#introduction)
+  * [Weapon Quality](#weapon-quality)
+    + [Stat-Trak](#stat-trak)
+  * [Weapon Wear](#weapon-wear)
+    + [Float Rabbit Hole](#float-rabbit-hole)
+  * [Cost and Reward](#cost-and-reward)
+- [Methodology](#methodology)
+  * [Data prep](#data-prep)
+  * [Opening a Single Case](#opening-a-single-case)
+  * [Simulation](#simulation)
+
 # Introduction
 There's a number of fact finding activities required to lay-down the groundwork for future analysis, such as finding the exact likelihood a given item is retrieved and the cost that item could be sold for.
 ## Weapon Quality
