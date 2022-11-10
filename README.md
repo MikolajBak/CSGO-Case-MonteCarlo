@@ -37,7 +37,7 @@ The wear of a weapon is determined by its float. Float is the value between 0-1 
 ### Float Rabbit Hole
 The question of quality became a bit of a rabbit hole that led to this [article](https://blog.csgofloat.com/analysis-of-float-value-and-paint-seed-distribution-in-cs-go/)  by user STEP7750 from a blog dedicated to CS:GO skin trading and learning more about the float values. In that article the author uses empirical data to make assumptions about the process of generating the float number. The key finding is that the floats are not uniformly distributed over the whole range of 0-1. 
 
-![[AK-47 Case Hardened Distribution.png]]
+![AK-47 Case Hardened Distribution](https://user-images.githubusercontent.com/7750820/201226552-5f0c878c-0772-4dd7-8c28-cca9569e9801.png)
 
 When looking at the distribution of float values for an AK-47 Case Hardened we can see that we effectively have 5 uniform distributions that correlate to the bands of floats corresponding to each wear level. Using that information, STEP7750 calculated that the probability of an AK-47 being a given wear level.
 
@@ -51,7 +51,7 @@ When looking at the distribution of float values for an AK-47 Case Hardened we c
 
 However, not every weapon skin has the same float range of 0-1. The default range in the game is 0.06-0.80, but it can be changed by the skin artist. STEP7750 repeated a similar experiment on Negev Loudmouth which has a float range of 0.14-0.65. 
 
-![[Negev Loudmouth Distribution.png]]
+![Negev Loudmouth Distribution](https://user-images.githubusercontent.com/7750820/201226588-2915e62c-b0f5-4d83-819c-2d97587ae4ab.png)
 
 Here we see the same distribution of 5 uniform distributions, but it's squished to fit within the defined range. An important thing to point out is that while we have the 5 distinct distributions, the discreet level of wear is still defined by the table above, which means in the case of Negev Loudmouth a Factory New finish is not possible as 0.07 lays outside of the range of possible floats. 
 
@@ -83,11 +83,11 @@ A single run of the simulation will consist of a number of steps to calculate th
 
 But firstly we need some data. I'm sure there is a much better and smarter way of getting this data, but my brain wasn't at 100%, so I just copied the value of guns from csgostash into a csv and noted down their float ranges. The value of a gun was determined as the current lowest sell offer on the Steam market place. The drawback of this approach, other than being slow, is that it's stuck in time and this information is quite likely to fluctuate and the sell price might not really reflect the value. A more general problem with using csgostash is that the higher value items (Factory New gloves) were not traded very often on Steam, which made getting the exact value challenging and in many cases I just had to guess.
 
-![[Value CSV.png]]
+![Value CSV](https://user-images.githubusercontent.com/7750820/201226625-d254c746-7ba9-4dcc-bc12-52e423c7e77f.png)
 
 After that was done, I loaded the data onto a notebook on Google Colab and prepared the data for the simulation. The first step was to add the drop chance based on the information from the Perfect World blog post, making sure all the probabilities added up to 1. 
 
-![[Python_case_df.png]]
+![Python_case_df](https://user-images.githubusercontent.com/7750820/201226642-4d34008c-99c8-4afc-8e4d-820fe5262169.png)
 
 Then the last step of data preparation was creation of a data frame which contained the wear levels and the associated float bands and probabilities. Since that was quite a small data frame, I was happy to just hard code it with the values quoted earlier.
 
@@ -201,7 +201,7 @@ res = pd.DataFrame({'Results': results})
 res.Results.mean()
 ```
 
-![[Progress bar.png]]
+![Progress bar](https://user-images.githubusercontent.com/7750820/201226681-2ba257c3-da82-4159-9a8c-6d075da63657.png)
 At this point I have run the simulation for 200 runs (in multiple batches) and the average profit is -$751.68. Another interesting way of looking at this data is to plot it on a histogram. This gives us the frequency density of different levels of profit. 
 
 ```python
@@ -210,5 +210,5 @@ plt.gca().set(title='Profit Histogram', ylabel='Frequency')
 ```
 
 
-![[Histogram.png]]
+![Histogram](https://user-images.githubusercontent.com/7750820/201226692-a2c52a5e-dc5f-430e-a094-0d04c96f39f7.png)
 As seen here, there are some instances where getting two sets of gloves is profitable, however the vast majority of simulations resulted in a net loss, with the biggest loss totalling -$4875.88.
